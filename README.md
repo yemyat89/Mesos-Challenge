@@ -17,14 +17,14 @@ system. In the end, your control system should provide an interface for:
   * time-stepping the simulation.
 
 For example, we could imagine in Scala an interface like this:
-
+```scala
   trait ElevatorControlSystem {
     def status(): Seq[(Int, Int, Int)]
     def update(Int, Int, Int)
     def pickup(Int, Int)
     def step()
   }
-
+```
 Here we have chosen to represent elevator state as 3 integers:
 
   Elevator ID, Floor Number, Goal Floor Number
@@ -39,11 +39,11 @@ example, the elevator state only has one goal floor; but it is conceivable
 that an elevator holds more than one person, and each person wants to go to a
 different floor, so there could be a few goal floors queued up.
 
-How to run
+# How to run
 
 Type "java -jar ecs.jar N" where N is the number of elevator. Then a prompt will show and you can type one of the following commands (status, pickup, goto, step, quit).
 
-Solution idea
+# Solution idea
 
 ElevatorController attach a request to next best elevator. Request can be either pickup or goto. The former is simulation of when a person is waiting outside of elevator bank and want to go (up/down). The latter is when the person is inside and press floor buttons to go. Internally, both requests are tranformed into goals. Determining which elevator to attach the current request is charaterized by ElevatorFinder. Currently, it returns the elevator with lowest load. This can be improved in several ways.
 
