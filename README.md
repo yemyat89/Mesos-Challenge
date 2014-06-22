@@ -1,4 +1,6 @@
-# Question
+# Mesosphere Programming Question
+
+## Question
 
 Design and implement an elevator control system. What data structures,
 interfaces and algorithms will you need? Your elevator control system should
@@ -39,7 +41,7 @@ example, the elevator state only has one goal floor; but it is conceivable
 that an elevator holds more than one person, and each person wants to go to a
 different floor, so there could be a few goal floors queued up.
 
-# How to run
+## How to run
 
 Get ecs.jar and from terminal type ```java -jar ecs.jar N``` where N is the number of elevator. Then a prompt will show and you can type one of the following commands (status, pickup, goto, step, quit).
 * status - To get status of all elevators
@@ -48,7 +50,15 @@ Get ecs.jar and from terminal type ```java -jar ecs.jar N``` where N is the numb
 * step - Perform update on all elevators
 * quit - Quit the program
 
-# Solution idea
+The sample interaction with the program is shown below.
+
+-----------
+Line 1
+Line 2
+Line 3
+-----------
+
+## Solution idea
 
 ElevatorController attach a request to next best elevator. Request can be either pickup or goto. The former is simulation of when a person is waiting outside of elevator bank and want to go (up/down). The latter is when the person is inside and press floor buttons to go. Internally, both requests are tranformed into goals. Determining which elevator to attach the current request is charaterized by ElevatorFinder. Currently, it returns the elevator with lowest load. This can be improved in several ways.
 
