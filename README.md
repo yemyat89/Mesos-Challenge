@@ -51,9 +51,12 @@ Get ecs.jar and from terminal type ```java -jar ecs.jar N``` where N is the numb
 The sample interaction with the program is shown below.
 
 ```shell
+~ java -jar ecs.jar 2
 Input:> status
 (elevator_id=0, current_floor=1, current_goal=[ ], goals_todo=[ ]), (elevator_id=1, current_floor=1, current_goal=[ ], goals_todo=[ ]), 
+
 Input:> pickup 5 1
+
 Input:> pickup 6 2
 Input:> status
 (elevator_id=0, current_floor=1, current_goal=[ 5], goals_todo=[ ]), (elevator_id=1, current_floor=1, current_goal=[ 6], goals_todo=[ ]), 
