@@ -17,8 +17,8 @@ public class Main {
 
 			int n = Integer.parseInt(args[0]);
 
-			IElevatorFinder efind = new ElevatorFinder();
-			IElevatorController ec = new ElevatorController(n, efind);
+			IElevatorFinder efind = new ElevatorFinderImpl();
+			IElevatorController ec = new ElevatorControllerImpl(n, efind);
 
 			boolean quit = false;
 
