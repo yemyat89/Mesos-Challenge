@@ -54,9 +54,7 @@ The sample interaction with the program is shown below.
 ~ java -jar ecs.jar 2
 Input:> status
 (elevator_id=0, current_floor=1, current_goal=[ ], goals_todo=[ ]), (elevator_id=1, current_floor=1, current_goal=[ ], goals_todo=[ ]), 
-
 Input:> pickup 5 1
-
 Input:> pickup 6 2
 Input:> status
 (elevator_id=0, current_floor=1, current_goal=[ 5], goals_todo=[ ]), (elevator_id=1, current_floor=1, current_goal=[ 6], goals_todo=[ ]), 
@@ -88,6 +86,6 @@ Input:> quit
 
 # Solution idea
 
-ElevatorController attach a request to next best elevator. Request can be either pickup or goto. The former is simulation of when a person is waiting outside of elevator bank and want to go (up/down). The latter is when the person is inside and press floor buttons to go. Internally, both requests are tranformed into goals. Determining which elevator to attach the current request is charaterized by ElevatorFinder. Currently, it returns the elevator with lowest load. This can be improved in several ways.
+ElevatorController attach a request to next best elevator. Request can be either pickup or goto. The former is simulation of when a person is waiting outside of elevator bank and want to go (up/down). The latter is when the person is inside and press floor buttons to go. This is why it requires elevator id. As mentioned above, the id starts from 0 to N-1. Internally, both requests are tranformed into goals. Determining which elevator to attach the current pickup request is charaterized by ElevatorFinder. Currently, it returns the elevator with lowest load. This can be improved in many ways.
 
-Typing "step" let all elevators to do their task. Assumption here is calling step will make elevators go next floor (up/down). Deciding whether to go up or down is determined by each elevator (using their current floor, next goal, etc). This way ElevatorController does not have to worry about this responsibility. The command pickup requires argument to say if it is up or down. This argument is currently not used but it is very useful for determining the next available elevator when a new request comes in.
+Typing "step" trigger all elevators to do their task. Assumption here is calling "step" coomand will make elevators go next floor (up/down). Deciding whether to go up or down is determined by each elevator (using their current floor, next goal, etc). This way, ElevatorController does not have to worry about this responsibility. The command pickup requires argument to say if it is up or down. This argument is currently not used but it is very useful for determining the next available elevator when a new request comes in.
