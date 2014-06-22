@@ -9,8 +9,6 @@ import com.yemyat.programming.challenge.mesos.interfaces.IElevatorFinder;
 import com.yemyat.programming.challenge.mesos.interfaces.IGoal;
 
 public class ElevatorController implements IElevatorController {
-	
-	public static final int DUMMY_DIRECTION = 1000;
 
 	// Using map is to support better way of locating next available elevator
 	private Map<Integer, IElevator> elevators;
@@ -23,7 +21,7 @@ public class ElevatorController implements IElevatorController {
 		elevators = new HashMap<Integer, IElevator>();
 		this.elevatorFinder = elevatorFinder;
 		for (int i = 0; i < numberOfElevator; i++) {
-			elevators.put(i, new Elevator(i, 1));
+			elevators.put(i, new ElevatorImpl(i, 1));
 		}
 	}
 
@@ -39,20 +37,12 @@ public class ElevatorController implements IElevatorController {
 
 	@Override
 	public void requestPickup(int floorNumber, int direction) {
-		IGoal goal = new Goal(floorNumber);
-		int eid = elevatorFinder.getNextElevatorId(elevators);
-		elevators.get(eid).addNewGoal(goal);
-
 		// TODO: direction is for future extension to find which elevator would
 		// be the most optimal to accept is pickup request. Currently, not used.
-		if (direction == DUMMY_DIRECTION) {
-			int cf = elevators.get(eid).getCurrentFloor();
-			if (cf > floorNumber) {
-				direction = -1;
-			} else {
-				direction = 1;
-			}
-		}
+		IGoal goal = new Goal(floorNumber);
+		int eid = elevatorFinder.getNextElevatorId(elevators, floorNumber,
+				direction);
+		elevators.get(eid).addNewGoal(goal);
 	}
 
 	@Override
@@ -88,8 +78,12 @@ public class ElevatorController implements IElevatorController {
 	}
 
 	@Override
-	public void pressButton(int goalFloor) {
-		requestPickup(goalFloor, DUMMY_DIRECTION);
+	public void pressButton(int elevatorId, int goalFloor) {
+		IGoal goal = new Goal(goalFloor);
+		IElevator elv = elevators.get(elevatorId);
+		if(elv != null) {
+			elv.addNewGoal(goal);
+		}
 	}
 
 }

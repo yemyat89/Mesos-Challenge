@@ -33,19 +33,19 @@ public class Main {
 					String[] p = x.split(" ");
 					if (p.length < 3) {
 						System.out
-								.println("pickup command needs 2 integer arguments");
+								.println("pickup command needs 2 integer arguments (current floor number and direction)");
 						continue;
 					}
 					ec.requestPickup(Integer.parseInt(p[1]),
 							Integer.parseInt(p[2]));
 				} else if (x.contains("goto")) {
 					String[] p = x.split(" ");
-					if (p.length < 2) {
+					if (p.length < 3) {
 						System.out
-								.println("pickup command needs an integer argument");
+								.println("pickup command needs 2 integer arguments (elevator ID and goal floor number)");
 						continue;
 					}
-					ec.pressButton(Integer.parseInt(p[1]));
+					ec.pressButton(Integer.parseInt(p[1]), Integer.parseInt(p[2]));
 				} else if (x.equals("step")) {
 					ec.step();
 				} else {

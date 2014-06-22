@@ -8,7 +8,8 @@ import com.yemyat.programming.challenge.mesos.interfaces.IElevatorFinder;
 public class ElevatorFinder implements IElevatorFinder {
 
 	@Override
-	public int getNextElevatorId(Map<Integer, IElevator> elevators) {
+	public int getNextElevatorId(Map<Integer, IElevator> elevators,
+			int goalFloor, int direction) {
 		int load = 1000;
 		IElevator e = null;
 		for (Integer elvId : elevators.keySet()) {
