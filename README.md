@@ -51,9 +51,36 @@ Get ecs.jar and from terminal type ```java -jar ecs.jar N``` where N is the numb
 The sample interaction with the program is shown below.
 
 ```shell
-Line 1
-Line 2
-Line 3
+Input:> status
+(elevator_id=0, current_floor=1, current_goal=[ ], goals_todo=[ ]), (elevator_id=1, current_floor=1, current_goal=[ ], goals_todo=[ ]), 
+Input:> pickup 5 1
+Input:> pickup 6 2
+Input:> status
+(elevator_id=0, current_floor=1, current_goal=[ 5], goals_todo=[ ]), (elevator_id=1, current_floor=1, current_goal=[ 6], goals_todo=[ ]), 
+Input:> goto 1 2
+Input:> status
+(elevator_id=0, current_floor=1, current_goal=[ 5], goals_todo=[ ]), (elevator_id=1, current_floor=1, current_goal=[ 6], goals_todo=[ (2) ]), 
+Input:> step
+Input:> step
+Input:> step
+Input:> step
+Elevator 0 has reached the floor 5
+Input:> status
+(elevator_id=0, current_floor=5, current_goal=[ ], goals_todo=[ ]), (elevator_id=1, current_floor=5, current_goal=[ 6], goals_todo=[ (2) ]), 
+Input:> step
+Elevator 1 has reached the floor 6
+Input:> status
+(elevator_id=0, current_floor=5, current_goal=[ ], goals_todo=[ ]), (elevator_id=1, current_floor=6, current_goal=[ 2], goals_todo=[ ]), 
+Input:> step
+Input:> step
+Input:> step
+Input:> status
+(elevator_id=0, current_floor=5, current_goal=[ ], goals_todo=[ ]), (elevator_id=1, current_floor=3, current_goal=[ 2], goals_todo=[ ]), 
+Input:> step
+Elevator 1 has reached the floor 2
+Input:> step
+No more task. Elevators' status: (Elevator-0=>5, Elevator-1=>2, )
+Input:> quit
 ```
 
 # Solution idea
