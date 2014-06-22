@@ -41,7 +41,12 @@ different floor, so there could be a few goal floors queued up.
 
 # How to run
 
-Get ecs.jar and from terminal type "java -jar ecs.jar N" where N is the number of elevator. Then a prompt will show and you can type one of the following commands (status, pickup, goto, step, quit).
+Get ecs.jar and from terminal type ```java -jar ecs.jar N``` where N is the number of elevator. Then a prompt will show and you can type one of the following commands (status, pickup, goto, step, quit).
+* status - To get status of all elevators
+* pickup X Y - Pickup request (X = current floor number and Y = direction)
+* goto P Q - Go to the floor command (P = elevator id and Q = goal floor number) // Elevator id is (0, 1, 2, ..., N-1)
+* step - Perform update on all elevators
+* quit - Quit the program
 
 # Solution idea
 
